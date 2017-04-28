@@ -65,12 +65,7 @@ namespace JJGSpeechRecognizer
 
 
 
-            //noakhali bivag chai
-            //akib gui pare
-            //git eta bujhso
-            //ganja khaiso ???
-
-
+          //kam hoy??
 
 
 
