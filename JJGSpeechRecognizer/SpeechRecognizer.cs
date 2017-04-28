@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Speech.Recognition;
+using System.Windows.Forms;
 
 namespace JJGSpeechRecognizer
 {
     class SpeechRecognizer
     {
+        public event KeyPressEventHandler KeyPress;
         private static SpeechGUI gui;   
         internal static SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
         

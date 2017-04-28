@@ -18,6 +18,7 @@ namespace JJGSpeechRecognizer
         private static List<string> preposition = new List<string>();
         private static List<string> _object = new List<string>();
 
+        private int numb, numb2;
         private static Process curProg = new Process();
         public static String procName;
         public static List<String> pids = new List<string>();
@@ -94,6 +95,30 @@ namespace JJGSpeechRecognizer
             voices.Add("sound komaao");
             voices.Add("close koro");
             voices.Add("vues close koro");
+            //calculator task
+            voices.Add("jog koro");
+            voices.Add("biyog koro");
+            voices.Add("goon koro");
+            voices.Add("vaag koro");
+            voices.Add("folafol");
+
+            //number
+
+            voices.Add("ak");
+            voices.Add("dui");
+            voices.Add("tiin");
+            voices.Add("char");
+            voices.Add("paach");
+            voices.Add("soy");
+            voices.Add("shaat");
+            voices.Add("aat");
+            voices.Add("shunno");
+           
+
+
+
+
+
             Choices voicesChoice = new Choices(voices.ToArray());
 
             
@@ -220,9 +245,103 @@ namespace JJGSpeechRecognizer
 
                     pids.Add(curProg.ProcessName);                      // pids has the string element "calc"
                     speechSynthesizer.Speak("calculator open koresi");
-                    
+                    //SendKeys.Send("{4}");
                     Thread.Sleep(500);
                     break;
+                ////
+                case "jog koro":
+                    
+                    speechSynthesizer.Speak("calculator a zog kortesi");
+                    SendKeys.Send("{ADD}");
+                   // Thread.Sleep(500);
+                    break;
+                case "biyog koro":
+
+                    SendKeys.Send("{SUBTRACT}");
+                    Thread.Sleep(500);
+                    break;
+                case "goon koro":
+
+                    SendKeys.Send("{MULTIPLY}");
+                    Thread.Sleep(500);
+                    break;
+                case "vaag koro":
+
+                    SendKeys.Send("{DIVIDE}");
+                    Thread.Sleep(500);
+                    break;
+
+                case "ak":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    
+                     SendKeys.Send("{1}");
+                    
+                    break;
+
+                case "dui":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{2}");
+
+                    break;
+                case "tin":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{3}");
+
+                    break;
+                case "char":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{4}");
+
+                    break;
+                case "pach":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{5}");
+
+                    break;
+
+                case "soy":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{6}");
+
+                    break;
+                case "shat":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{7}");
+
+                    break;
+                case "aat":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{8}");
+
+                    break;
+                case "noy":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{9}");
+
+                    break;
+                case "shunno":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{0}");
+
+                    break;
+
+                case "folafol":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+
+                    SendKeys.Send("{ENTER}");
+
+                    break;
+
+
 
                 case "my computer open koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
