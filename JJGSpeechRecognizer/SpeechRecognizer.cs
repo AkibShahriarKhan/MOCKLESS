@@ -57,6 +57,7 @@ namespace JJGSpeechRecognizer
             {
                 gui.LBLSpeechTextOut.Text = gui.LBLSpeechTextOut.Text + phrase.Text;
                 //new gui change
+                //Akib ke GUI sikhay Charbo
             }
         }        
     }
