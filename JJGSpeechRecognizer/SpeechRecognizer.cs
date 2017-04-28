@@ -56,6 +56,7 @@ namespace JJGSpeechRecognizer
             foreach(RecognizedPhrase phrase in e.Result.Alternates)
             {
                 gui.LBLSpeechTextOut.Text = gui.LBLSpeechTextOut.Text + phrase.Text;
+                //new gui change
             }
 
 
