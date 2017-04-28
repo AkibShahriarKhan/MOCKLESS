@@ -57,6 +57,25 @@ namespace JJGSpeechRecognizer
             {
                 gui.LBLSpeechTextOut.Text = gui.LBLSpeechTextOut.Text + phrase.Text;
             }
+
+
+
+
+
+
+            //noakhali bivag chai
+            //akib gui pare
+            //git eta bujhso
+            //ganja khaiso ???
+
+
+
+
+
+
+
+
+
         }        
     }
 }
