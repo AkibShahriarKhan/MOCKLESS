@@ -1,0 +1,35 @@
+﻿CommandLogic.cs
+	Mouse Movement
+
+	Issue: repeated command for left, right, up, down do not work.
+	Status: Unsolved
+
+	Details: above mentioned commands are successfuly executed for the first time. But if the command is given more than once in a row, 
+			 it works only at the first time.
+	Example:
+
+		---------------------------------------
+		|Command Sequence	|	Action		  |
+		|-------------------------------------|
+		|   left			|	works		  |
+		|   right			|	works		  |
+		|   down			|	works		  |
+		|   up				|	works		  |
+		|   left			|	works		  |
+		|   left			|	does not work | 
+		|   right			|	works		  |
+		|   left			|	works		  |
+		|   left			|	does not work |
+		---------------------------------------
+
+
+	Application Commands
+
+	Issue: Last "explorer" process is killed, but the First Process is not.
+	Status: Unsolved
+
+	Details: "My Computer close koro" does not close the first "My Computer" window when multiple "My Computer" Window is open.
+	Remark: when trying to close the first "My computer", giving "My Computer close koro" command interferes with desktop Taskbar. The Taskbar 
+			goes blank for a while.
+			This issue might be device specific. Check if it happens in your device too. If the command works as it should, please change the
+			status to solved.
