@@ -60,18 +60,6 @@ namespace JJGSpeechRecognizer
             }
 
 
-
-
-
-
-          //kam hoy??
-
-
-
-
-
-
-
         }        
     }
 }
