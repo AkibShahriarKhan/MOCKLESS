@@ -59,6 +59,25 @@ namespace JJGSpeechRecognizer
                 //new gui change
                 //Akib ke GUI sikhay Charbo
             }
+
+
+
+
+
+
+            //noakhali bivag chai
+            //akib gui pare
+            //git eta bujhso
+            //ganja khaiso ???
+
+
+
+
+
+
+
+
+
         }        
     }
 }
