@@ -83,20 +83,32 @@ namespace JJGSpeechRecognizer
             voices.Add("majh khaane");
             voices.Add("click left");
             voices.Add("click right");
+            //System
+            voices.Add("sound baaraao");
+            voices.Add("sound komaao");
             //window tasks
-            voices.Add("calculator open koro");
-            voices.Add("calculator close koro");
             voices.Add("my computer open koro");
+            voices.Add("go to");
+            voices.Add("go right");
+            voices.Add("go left");
+            voices.Add("go up");
+            voices.Add("go down");
+            voices.Add("enter");
+            voices.Add("back");
+            voices.Add("copy");
+            voices.Add("paste");
+            voices.Add("Select all");
             voices.Add("my computer close koro");
+            //chrome relate
             voices.Add("face book login koro");
             voices.Add("you tube a jao to");
             voices.Add("google a jao to");
             voices.Add("vues a login koro");
-            voices.Add("sound baaraao");
-            voices.Add("sound komaao");
             voices.Add("close koro");
             voices.Add("vues close koro");
             //calculator task
+            voices.Add("calculator open koro");
+            voices.Add("calculator close koro");
             voices.Add("jog koro");
             voices.Add("biyog koro");
             voices.Add("goon koro");
@@ -239,7 +251,7 @@ namespace JJGSpeechRecognizer
                     speechSynthesizer.Speak("RIGHT BUTTON CLICKED");
                     break;
                 
-                //Application Commands
+                //Calculator Commands
                 case "calculator open koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     curProg = System.Diagnostics.Process.Start("calc"); //"calc" process started and the process is referred by curProg
@@ -353,7 +365,7 @@ namespace JJGSpeechRecognizer
                                                               //"calc" process name didnt exist. Using "calc" in this case, will return empty array from GetProcessByName() 
                                                               //and in turn will cause an index out of bound error 
                                                               //Additional Info: unlike Explorer, calculator creates ONE and ONLY ONE process for new calculator instance(s) as a result, 
-                                                              //TempProc[TempProc.Length[]-1].kill() will close all the instance at once
+                                                              //TempProc[TempProc.Length-1].kill() will close all the instance at once.
                         pids.Remove("calc");
                         speechSynthesizer.Speak("calculator close koresi");
                         Thread.Sleep(500);
@@ -365,7 +377,7 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
-
+                //Windows Explorer
                 case "my computer open koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     //System.Diagnostics.Process.Start("iexplore.exe", "::{20d04fe0-3aea-1069-a2d8-08002b30309d}"); //File Explorer opened
@@ -374,6 +386,50 @@ namespace JJGSpeechRecognizer
                     pids.Add(procName); //pids has "calc", "explorer"
                     Thread.Sleep(500);
                     speechSynthesizer.Speak("my computer open koresi");
+                    break;
+
+                case "go right":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{RIGHT}");
+                    break;
+
+                case "go left":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{LEFT}");
+                    break;
+
+                case "go up":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{UP}");
+                    break;
+
+                case "go down":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{DOWN}");
+                    break;
+                    
+                case "enter":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{ENTER}");
+                    break;
+
+                case "back":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{BS}");
+                    break;
+
+                case "copy":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^c");
+                    break;
+
+                case "paste":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^v");
+                    break;
+                    
+                case "select all":
+
                     break;
 
                 case "my computer close koro":
@@ -393,6 +449,7 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
+                //Chrome Related
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     speechSynthesizer.Speak("close koresi");
