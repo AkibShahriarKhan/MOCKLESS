@@ -309,7 +309,7 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("{6}");
 
                     break;
-                case "shat":
+                case "shaat":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
 
                     SendKeys.Send("{7}");
