@@ -85,6 +85,7 @@ namespace JJGSpeechRecognizer
             voices.Add("click right");
             //window tasks
             voices.Add("calculator open koro");
+            voices.Add("calculator close koro");
             voices.Add("my computer open koro");
             voices.Add("my computer close koro");
             voices.Add("face book login koro");
@@ -243,7 +244,9 @@ namespace JJGSpeechRecognizer
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     curProg = System.Diagnostics.Process.Start("calc"); //"calc" process started and the process is referred by curProg
 
-                    pids.Add(curProg.ProcessName);                      // pids has the string element "calc"
+                    if (!pids.Contains("calc")) { pids.Add(curProg.ProcessName); }
+                    //gui.LBLSpeechTextOut.Text = curProg.ProcessName;
+                    // pids has the string element "calc"
                     speechSynthesizer.Speak("calculator open koresi");
                     //SendKeys.Send("{4}");
                     Thread.Sleep(500);
@@ -341,6 +344,26 @@ namespace JJGSpeechRecognizer
 
                     break;
 
+                case "calculator close koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    
+                    if (pids.Contains("calc"))
+                    {
+                        KillProcessAndChildren("Calculator"); //"Calculator" is the process name found from task manager. 
+                                                              //"calc" process name didnt exist. Using "calc" in this case, will return empty array from GetProcessByName() 
+                                                              //and in turn will cause an index out of bound error 
+                                                              //Additional Info: unlike Explorer, calculator creates ONE and ONLY ONE process for new calculator instance(s) as a result, 
+                                                              //TempProc[TempProc.Length[]-1].kill() will close all the instance at once
+                        pids.Remove("calc");
+                        speechSynthesizer.Speak("calculator close koresi");
+                        Thread.Sleep(500);
+                    }
+                    else
+                    {
+                        speechSynthesizer.Speak("The Process is not running.");
+                        Thread.Sleep(500);
+                    }
+                    break;
 
 
                 case "my computer open koro":
@@ -448,6 +471,7 @@ namespace JJGSpeechRecognizer
             foreach (Process p in TempProc)//kills all the "explorer" processes
             {
                 p.Kill();
+                pids.Remove(Pname);
             }
             */
         }
