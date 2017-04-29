@@ -87,19 +87,26 @@ namespace JJGSpeechRecognizer
             voices.Add("sound baaraao");
             voices.Add("sound komaao");
             //window tasks
-            voices.Add("my computer open koro");
-            voices.Add("go to");
-            voices.Add("go right");
-            voices.Add("go left");
-            voices.Add("go up");
-            voices.Add("go down");
-            voices.Add("enter");
-            voices.Add("back");
-            voices.Add("copy");
-            voices.Add("paste");
-            voices.Add("Select all");
-            voices.Add("my computer close koro");
-            //chrome relate
+            voices.Add("my computer open koro"); //done
+            voices.Add("go right");             //done
+            voices.Add("go left");              //done
+            voices.Add("go up");                //done
+            voices.Add("go down");              //done
+            voices.Add("enter");                //done
+            voices.Add("back");                 //done
+            voices.Add("copy");                 //done
+            voices.Add("paste");                //done
+            voices.Add("sob nir ba chon karo"); //done
+            voices.Add("my computer close koro");//done
+            //Camera 
+            voices.Add("Camera open koro"); //pending
+            voices.Add("Take picture");     //pending
+            voices.Add("Record Video");     //pending
+            voices.Add("Open galary");      //pending
+            voices.Add("Zoom in");          //pending
+            voices.Add("Zoom out");         //pending
+            voices.Add("Delete");           //pending
+            //chrome related
             voices.Add("face book login koro");
             voices.Add("you tube a jao to");
             voices.Add("google a jao to");
@@ -263,15 +270,14 @@ namespace JJGSpeechRecognizer
                     //SendKeys.Send("{4}");
                     Thread.Sleep(500);
                     break;
-                ////
+
                 case "jog koro":
-                    
                     speechSynthesizer.Speak("calculator a zog kortesi");
                     SendKeys.Send("{ADD}");
                    // Thread.Sleep(500);
                     break;
-                case "biyog koro":
 
+                case "biyog koro":
                     SendKeys.Send("{SUBTRACT}");
                     Thread.Sleep(500);
                     break;
@@ -288,9 +294,7 @@ namespace JJGSpeechRecognizer
 
                 case "ak":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    
-                     SendKeys.Send("{1}");
-                    
+                    SendKeys.Send("{1}");
                     break;
 
                 case "dui":
@@ -320,45 +324,37 @@ namespace JJGSpeechRecognizer
 
                 case "soy":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{6}");
-
                     break;
+
                 case "shaat":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{7}");
-
                     break;
+
                 case "aat":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{8}");
-
                     break;
+
                 case "noy":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{9}");
-
                     break;
+
                 case "shunno":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{0}");
-
                     break;
 
                 case "folafol":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{ENTER}");
-
                     break;
 
                 case "calculator close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    
+             
                     if (pids.Contains("calc"))
                     {
                         KillProcessAndChildren("Calculator"); //"Calculator" is the process name found from task manager. 
@@ -380,6 +376,7 @@ namespace JJGSpeechRecognizer
                 //Windows Explorer
                 case "my computer open koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
+
                     //System.Diagnostics.Process.Start("iexplore.exe", "::{20d04fe0-3aea-1069-a2d8-08002b30309d}"); //File Explorer opened
                     curProg = System.Diagnostics.Process.Start("explorer", "::{20d04fe0-3aea-1069-a2d8-08002b30309d}"); //File Explorer opened and referred by curProg
                     procName = "explorer";
@@ -428,8 +425,9 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("^v");
                     break;
                     
-                case "select all":
-
+                case "sob nir ba chon karo":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^a");
                     break;
 
                 case "my computer close koro":
@@ -449,9 +447,15 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
+                case "Delete":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{DEL}");
+                    break;
+                
                 //Chrome Related
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("%F4");
                     speechSynthesizer.Speak("close koresi");
                     break;
                     
