@@ -126,10 +126,6 @@ namespace JJGSpeechRecognizer
             voices.Add("paste");
             voices.Add("Select all");
             voices.Add("my computer close koro");
-            voices.Add("refresh koro");
-            voices.Add("desktop dekhao");
-            voices.Add("niche scroll koro");
-            voices.Add("upore scroll koro");
             //chrome relate
             voices.Add("face book login koro");
             voices.Add("you tube a jao to");
@@ -303,15 +299,14 @@ namespace JJGSpeechRecognizer
                     speechSynthesizer.Speak("calculator open koresi");
                     
                     break;
-                ////
+
                 case "jog koro":
-                    
                     speechSynthesizer.Speak("calculator a zog kortesi");
                     SendKeys.Send("{ADD}");
                     /// Thread.Sleep(500);
                     break;
-                case "biyog koro":
 
+                case "biyog koro":
                     SendKeys.Send("{SUBTRACT}");
                     Thread.Sleep(500);
                     break;
@@ -328,9 +323,7 @@ namespace JJGSpeechRecognizer
 
                 case "ek":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    
                      SendKeys.Send("{1}");
-                    
                     break;
 
                 case "dui":
@@ -360,40 +353,32 @@ namespace JJGSpeechRecognizer
 
                 case "soy":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{6}");
-
                     break;
+
                 case "shaat":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{7}");
-
                     break;
+
                 case "aat":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{8}");
-
                     break;
+
                 case "noy":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{9}");
-
                     break;
+
                 case "shunno":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{0}");
-
                     break;
 
                 case "folafol":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-
                     SendKeys.Send("{ENTER}");
-
                     break;
 
                 case "pesao":
@@ -430,6 +415,7 @@ namespace JJGSpeechRecognizer
                 //Windows Explorer
                 case "my computer open koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
+
                     //System.Diagnostics.Process.Start("iexplore.exe", "::{20d04fe0-3aea-1069-a2d8-08002b30309d}"); //File Explorer opened
                     curProg = System.Diagnostics.Process.Start("explorer", "::{20d04fe0-3aea-1069-a2d8-08002b30309d}"); //File Explorer opened and referred by curProg
                     procName = "explorer";
@@ -479,8 +465,9 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("^v");
                     break;
                     
-                case "select all":
-
+                case "sob nir ba chon karo":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^a");
                     break;
 
                 case "refresh koro":
@@ -528,30 +515,12 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
-                //alt-F4
+                //Chrome Related
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    SendKeys.Send("%{F4}");
-                    speechSynthesizer.Speak("close korsi");
+                    speechSynthesizer.Speak("close koresi");
+                    break;
                     
-                    break;
-                
-                //Browser control
-                case "tab close koro":
-                    gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    SendKeys.Send("^{F4}");
-                    speechSynthesizer.Speak("Tab close koresi");
-                    break;
-
-                case "program switch koro":
-                    gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    speechSynthesizer.Speak("program switch korsi");
-                    KeyboardSend.KeyDown(Keys.RWin);
-                    KeyboardSend.KeyDown(Keys.Tab);
-                    KeyboardSend.KeyUp(Keys.RWin);
-                    KeyboardSend.KeyUp(Keys.Tab);
-                    break;
-
                 //Chrome Related    
                 case "face book login koro":
                     System.Diagnostics.Process.Start("https://www.facebook.com/");
