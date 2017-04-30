@@ -148,7 +148,7 @@ namespace JJGSpeechRecognizer
             voices.Add("camera open koro");
             voices.Add("boro koro");
             voices.Add("soto koro");
-            voices.Add("muse felo8");
+            voices.Add("muse felo");
             voices.Add("tab dao");
 
             //number
