@@ -7,10 +7,33 @@ using System.Speech.Recognition;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 
 namespace JJGSpeechRecognizer
 {
+    //This class simulates keystrokes from Keys Class
+    static class KeyboardSend
+    {
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+        private const int KEYEVENTF_EXTENDEDKEY = 1;
+        private const int KEYEVENTF_KEYUP = 2;
+
+        public static void KeyDown(Keys vKey)
+        {
+            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
+        }
+
+        public static void KeyUp(Keys vKey)
+        {
+            keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+        }
+    }
+    //Definition Ends
+
     class CommandLogic
     {
         private static List<string> subject = new List<string>();
@@ -86,33 +109,30 @@ namespace JJGSpeechRecognizer
             //System
             voices.Add("sound baaraao");
             voices.Add("sound komaao");
+            voices.Add("close koro");
+            voices.Add("program switch koro");
+            voices.Add("screenshot nao");
+            voices.Add("windows menu open koro");
             //window tasks
-            voices.Add("my computer open koro"); //done
-            voices.Add("go right");             //done
-            voices.Add("go left");              //done
-            voices.Add("go up");                //done
-            voices.Add("go down");              //done
-            voices.Add("enter");                //done
-            voices.Add("back");                 //done
-            voices.Add("copy");                 //done
-            voices.Add("paste");                //done
-            voices.Add("sob nir ba chon karo"); //done
-            voices.Add("my computer close koro");//done
-            //Camera 
-            voices.Add("camera open koro"); //pending
-            voices.Add("Take picture");     //pending
-            voices.Add("Record Video");     //pending
-            voices.Add("Open galary");      //pending
-            voices.Add("Zoom in");          //pending
-            voices.Add("Zoom out");         //pending
-            voices.Add("Delete");           //pending
-            //chrome related
+            voices.Add("my computer open koro");
+            voices.Add("go to");
+            voices.Add("go right");
+            voices.Add("go left");
+            voices.Add("go up");
+            voices.Add("go down");
+            voices.Add("enter");
+            voices.Add("back");
+            voices.Add("copy");
+            voices.Add("paste");
+            voices.Add("Select all");
+            voices.Add("my computer close koro");
+            //chrome relate
             voices.Add("face book login koro");
             voices.Add("you tube a jao to");
             voices.Add("google a jao to");
             voices.Add("vues a login koro");
-            voices.Add("close koro");
             voices.Add("vues close koro");
+            voices.Add("tab close koro");
             //calculator task
             voices.Add("calculator open koro");
             voices.Add("calculator close koro");
@@ -121,12 +141,21 @@ namespace JJGSpeechRecognizer
             voices.Add("goon koro");
             voices.Add("vaag koro");
             voices.Add("folafol");
+            voices.Add("pesao");
+            voices.Add("clear koro");
+
+            //Photo Viewer
+
+            voices.Add("boro koro");
+            voices.Add("soto koro");
+            voices.Add("muse felo");
+            voices.Add("tab dao");
 
             //number
 
             voices.Add("ak");
             voices.Add("dui");
-            voices.Add("tiin");
+            voices.Add("teen");
             voices.Add("char");
             voices.Add("paach");
             voices.Add("soy");
@@ -189,6 +218,7 @@ namespace JJGSpeechRecognizer
                 case "amar naam bolo":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     speechSynthesizer.Speak(" AKEEEB SHAHRIAR KHAN");
+                    
                     break;
 
                 case "Mockless":
@@ -267,14 +297,13 @@ namespace JJGSpeechRecognizer
                     //gui.LBLSpeechTextOut.Text = curProg.ProcessName;
                     // pids has the string element "calc"
                     speechSynthesizer.Speak("calculator open koresi");
-                    //SendKeys.Send("{4}");
-                    Thread.Sleep(500);
+                    
                     break;
 
                 case "jog koro":
                     speechSynthesizer.Speak("calculator a zog kortesi");
                     SendKeys.Send("{ADD}");
-                   // Thread.Sleep(500);
+                    /// Thread.Sleep(500);
                     break;
 
                 case "biyog koro":
@@ -292,9 +321,9 @@ namespace JJGSpeechRecognizer
                     Thread.Sleep(500);
                     break;
 
-                case "ak":
+                case "ek":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    SendKeys.Send("{1}");
+                     SendKeys.Send("{1}");
                     break;
 
                 case "dui":
@@ -303,13 +332,13 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("{2}");
 
                     break;
-                case "tin":
+                case "teen":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
 
                     SendKeys.Send("{3}");
 
                     break;
-                case "char":
+                case "chaar":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
 
                     SendKeys.Send("{4}");
@@ -352,9 +381,19 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("{ENTER}");
                     break;
 
+                case "pesao":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{BS}");
+                    break;
+
+                case "clear koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{ESC}");
+                    break;
+
                 case "calculator close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-             
+                    
                     if (pids.Contains("calc"))
                     {
                         KillProcessAndChildren("Calculator"); //"Calculator" is the process name found from task manager. 
@@ -383,6 +422,7 @@ namespace JJGSpeechRecognizer
                     pids.Add(procName); //pids has "calc", "explorer"
                     Thread.Sleep(500);
                     speechSynthesizer.Speak("my computer open koresi");
+                    speechSynthesizer.Dispose();
                     break;
 
                 case "go right":
@@ -430,6 +470,34 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("^a");
                     break;
 
+                case "refresh koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    KeyboardSend.KeyDown(Keys.F5);
+                    KeyboardSend.KeyUp(Keys.F5);
+                    break;
+
+                case "desktop dekhao":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    KeyboardSend.KeyDown(Keys.LWin);
+                    KeyboardSend.KeyDown(Keys.D);
+                    KeyboardSend.KeyUp(Keys.LWin);
+                    KeyboardSend.KeyUp(Keys.D);
+                    break;
+
+                case "niche scroll koro":
+
+                    SendKeys.Send("{DOWN} 10");
+                    break;
+
+                case "upore scroll koro":
+
+                    SendKeys.Send("{UP} 10");
+                    break;
+
+                case "screenshot nao":
+                    PrintScreen();
+                    break;
+
                 case "my computer close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
 
@@ -447,25 +515,13 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
-                case "Delete":
-                    gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    SendKeys.Send("{DEL}");
-                    break;
-
-                //Camera Related
-                case "camera open koro":
-                    gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    Process.Start("WindowsCamera");
-                    speechSynthesizer.Speak("Camera open koresi");
-                    break;
-
                 //Chrome Related
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    SendKeys.Send("%F4");
                     speechSynthesizer.Speak("close koresi");
                     break;
                     
+                //Chrome Related    
                 case "face book login koro":
                     System.Diagnostics.Process.Start("https://www.facebook.com/");
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
@@ -509,6 +565,35 @@ namespace JJGSpeechRecognizer
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     ExecuteCommand("C:/nircmd.exe changesysvolume -8000");
                     break;
+
+                case "soto koro": //zoom out
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    KeyboardSend.KeyDown(Keys.ControlKey);
+                    SendKeys.Send("{SUBTRACT}");
+                    KeyboardSend.KeyUp(Keys.ControlKey);
+                    break;
+
+                case "boro koro": //zoom in
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    KeyboardSend.KeyDown(Keys.ControlKey);
+                    SendKeys.Send("{ADD}");
+                    KeyboardSend.KeyUp(Keys.ControlKey);
+                    break;
+
+                case "muse felo":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{DEL}");
+                    break;
+
+                case "tab dao":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("{TAB}");
+                    break;
+
+                case "windows menu open koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^{ESC}");
+                    break;
             }   
         }
                
@@ -544,5 +629,15 @@ namespace JJGSpeechRecognizer
             */
         }
         //ends
+
+        //Printing Screen
+        static void PrintScreen()
+        {
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            Bitmap sshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics gg = Graphics.FromImage(sshot as Image);
+            gg.CopyFromScreen(0, 0, 0, 0, sshot.Size);
+            sshot.Save(@"C:\MocklessShots\ss.jpg", ImageFormat.Jpeg);
+        }
     }
 }
