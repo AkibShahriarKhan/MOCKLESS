@@ -126,7 +126,7 @@ namespace JJGSpeechRecognizer
             voices.Add("paste");
             voices.Add("Select all");
             voices.Add("my computer close koro");
-            //chrome relate
+            //chrome related
             voices.Add("face book login koro");
             voices.Add("you tube a jao to");
             voices.Add("google a jao to");
@@ -145,7 +145,7 @@ namespace JJGSpeechRecognizer
             voices.Add("clear koro");
 
             //Photo Viewer
-
+            voices.Add("camera open koro");
             voices.Add("boro koro");
             voices.Add("soto koro");
             voices.Add("muse felo");
@@ -253,21 +253,25 @@ namespace JJGSpeechRecognizer
                     break;
 
                 case "down":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
                     mouseY = mouseY + 5000;
                     MouseControl.MoveTo(mouseX, mouseY);
                     break;
 
                 case "up":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
                     mouseY = mouseY - 5000;
                     MouseControl.MoveTo(mouseX, mouseY);
                     break;
 
                 case "left":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
                     mouseX = mouseX - 5000;
                     MouseControl.MoveTo(mouseX, mouseY);
                     break;
 
                 case "right":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
                     mouseX = mouseX + 5000;
                     MouseControl.MoveTo(mouseX, mouseY);
                     break;
@@ -445,7 +449,7 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("{DOWN}");
                     break;
                     
-                case "enter":
+                case "enter"
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{ENTER}");
                     break;
@@ -515,12 +519,30 @@ namespace JJGSpeechRecognizer
                     }
                     break;
 
-                //Chrome Related
+                //alt-F4
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
-                    speechSynthesizer.Speak("close koresi");
+                    SendKeys.Send("%{F4}");
+                    speechSynthesizer.Speak("close korsi");
+
                     break;
-                    
+
+                //Browser control
+                case "tab close koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    SendKeys.Send("^{F4}");
+                    speechSynthesizer.Speak("Tab close koresi");
+                    break;
+
+                case "program switch koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    speechSynthesizer.Speak("program switch korsi");
+                    KeyboardSend.KeyDown(Keys.RWin);
+                    KeyboardSend.KeyDown(Keys.Tab);
+                    KeyboardSend.KeyUp(Keys.RWin);
+                    KeyboardSend.KeyUp(Keys.Tab);
+                    break;
+
                 //Chrome Related    
                 case "face book login koro":
                     System.Diagnostics.Process.Start("https://www.facebook.com/");
@@ -572,7 +594,14 @@ namespace JJGSpeechRecognizer
                     SendKeys.Send("{SUBTRACT}");
                     KeyboardSend.KeyUp(Keys.ControlKey);
                     break;
-
+                //Camera Related
+                //case "camera open koro":
+                //    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                //    curProg = Process.Start("Camera.exe");
+                //    pids.Add(curProg.ProcessName);
+                //    Camera camera = new Camera();
+                //    speechSynthesizer.Speak("camera open koresi");
+                //    break;
                 case "boro koro": //zoom in
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     KeyboardSend.KeyDown(Keys.ControlKey);
