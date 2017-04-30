@@ -148,7 +148,7 @@ namespace JJGSpeechRecognizer
             voices.Add("camera open koro");
             voices.Add("boro koro");
             voices.Add("soto koro");
-            voices.Add("muse felo");
+            voices.Add("muse felo8");
             voices.Add("tab dao");
 
             //number
@@ -448,8 +448,8 @@ namespace JJGSpeechRecognizer
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{DOWN}");
                     break;
-                    
-                case "enter"
+
+                case "enter":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{ENTER}");
                     break;
