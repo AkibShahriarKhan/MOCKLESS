@@ -448,8 +448,8 @@ namespace JJGSpeechRecognizer
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{DOWN}");
                     break;
-                    
-                case "enter"
+
+                case "enter":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{ENTER}");
                     break;
