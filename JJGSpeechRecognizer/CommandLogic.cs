@@ -99,7 +99,7 @@ namespace JJGSpeechRecognizer
             voices.Add("sob nir ba chon karo"); //done
             voices.Add("my computer close koro");//done
             //Camera 
-            voices.Add("Camera open koro"); //pending
+            voices.Add("camera open koro"); //pending
             voices.Add("Take picture");     //pending
             voices.Add("Record Video");     //pending
             voices.Add("Open galary");      //pending
@@ -451,7 +451,14 @@ namespace JJGSpeechRecognizer
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
                     SendKeys.Send("{DEL}");
                     break;
-                
+
+                //Camera Related
+                case "camera open koro":
+                    gui.LBLSpeechTextOut.Text = e.Result.Text;
+                    Process.Start("WindowsCamera");
+                    speechSynthesizer.Speak("Camera open koresi");
+                    break;
+
                 //Chrome Related
                 case "close koro":
                     gui.LBLSpeechTextOut.Text = e.Result.Text;
