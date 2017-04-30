@@ -667,6 +667,8 @@ namespace JJGSpeechRecognizer
             Graphics gg = Graphics.FromImage(sshot as Image);
             gg.CopyFromScreen(0, 0, 0, 0, sshot.Size);
             sshot.Save(@"C:\MocklessShots\ss.jpg", ImageFormat.Jpeg);
+
+            //screentest
         }
     }
 }
